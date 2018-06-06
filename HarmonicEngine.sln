@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27703.2018
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HarmonicEngine", "HarmonicEngine\HarmonicEngine.vcxproj", "{E520204F-87D7-4AEF-8675-A6B1CBA073D1}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Sandbox", "Sandbox\Sandbox.vcxproj", "{F5293558-23B6-420D-B163-F96DCA045273}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +23,14 @@ Global
 		{E520204F-87D7-4AEF-8675-A6B1CBA073D1}.Release|x64.Build.0 = Release|x64
 		{E520204F-87D7-4AEF-8675-A6B1CBA073D1}.Release|x86.ActiveCfg = Release|Win32
 		{E520204F-87D7-4AEF-8675-A6B1CBA073D1}.Release|x86.Build.0 = Release|Win32
+		{F5293558-23B6-420D-B163-F96DCA045273}.Debug|x64.ActiveCfg = Debug|x64
+		{F5293558-23B6-420D-B163-F96DCA045273}.Debug|x64.Build.0 = Debug|x64
+		{F5293558-23B6-420D-B163-F96DCA045273}.Debug|x86.ActiveCfg = Debug|Win32
+		{F5293558-23B6-420D-B163-F96DCA045273}.Debug|x86.Build.0 = Debug|Win32
+		{F5293558-23B6-420D-B163-F96DCA045273}.Release|x64.ActiveCfg = Release|x64
+		{F5293558-23B6-420D-B163-F96DCA045273}.Release|x64.Build.0 = Release|x64
+		{F5293558-23B6-420D-B163-F96DCA045273}.Release|x86.ActiveCfg = Release|Win32
+		{F5293558-23B6-420D-B163-F96DCA045273}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
