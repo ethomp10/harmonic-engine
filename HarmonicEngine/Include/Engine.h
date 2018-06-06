@@ -2,12 +2,21 @@
 #ifndef _ENGINE_H
 #define _ENGINE_H
 
+struct SDL_Window;
+struct SDL_Surface;
+
 namespace engine {
-	class Engine
-	{
+	class Engine {
+		SDL_Window* m_window;
+		SDL_Surface* m_surface;
 	public:
-		int init();
-		void run();
+		~Engine();
+
+		int Init();
+		void Run();
+	private:
+		void InitSDL();
+		void CloseSDL();
 	};
 }
 
