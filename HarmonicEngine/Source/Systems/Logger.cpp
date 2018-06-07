@@ -15,4 +15,3 @@ namespace engine {
 		Logger::GetInstance().m_currentLevel = l;
 	}
 }
- 

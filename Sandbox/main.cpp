@@ -3,9 +3,12 @@
 
 int main(int argc, char* args[]) {
 	engine::Engine e;
-	e.Init();
+	
+	if (e.Init() > 0) {
+		return -1;
+	}
 
-	getchar();
+	e.Run();
 
 	return 0;
 }

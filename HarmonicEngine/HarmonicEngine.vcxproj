@@ -145,13 +145,17 @@
     <ClInclude Include="Include\Engine.h" />
     <ClInclude Include="Include\Systems\Logger.h" />
     <ClInclude Include="Include\Systems\Singleton.h" />
+    <ClInclude Include="Include\Systems\System.h" />
+    <ClInclude Include="Include\Systems\SystemManager.h" />
+    <ClInclude Include="Include\Systems\Window.h" />
     <ClInclude Include="Include\Utilities\EngineTypes.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Include\Systems\Logger.cpp" />
     <ClCompile Include="Source\Engine.cpp" />
     <ClCompile Include="Source\Systems\Logger.cpp" />
     <ClCompile Include="Source\Systems\Singleton.cpp" />
+    <ClCompile Include="Source\Systems\SystemManager.cpp" />
+    <ClCompile Include="Source\Systems\Window.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
