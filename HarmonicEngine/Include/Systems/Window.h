@@ -18,5 +18,8 @@ namespace engine {
 		void Update() override;
 		void Draw() const override;
 		bool Shutdown() override;
+	private:
+		bool InitSDL();
+		bool ShutdownSDL();
 	};
 }

@@ -8,6 +8,8 @@
     <ClInclude Include="Include\Systems\Window.h" />
     <ClInclude Include="Include\Systems\System.h" />
     <ClInclude Include="Include\Systems\SystemManager.h" />
+    <ClInclude Include="Include\Systems\Graphics.h" />
+    <ClInclude Include="Include\Resources\ResourceManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Engine.cpp" />
@@ -15,5 +17,7 @@
     <ClCompile Include="Source\Systems\Logger.cpp" />
     <ClCompile Include="Source\Systems\Window.cpp" />
     <ClCompile Include="Source\Systems\SystemManager.cpp" />
+    <ClCompile Include="Source\Systems\Graphics.cpp" />
+    <ClCompile Include="Source\Resources\ResourceManager.cpp" />
   </ItemGroup>
 </Project>

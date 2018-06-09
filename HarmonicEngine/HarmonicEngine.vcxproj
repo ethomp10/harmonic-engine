@@ -71,19 +71,19 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <IncludePath>$(SolutionDir)Dependencies\Include;$(SolutionDir)HarmonicEngine\Include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Dependencies\Libraries\SDL\x86\;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)Dependencies\Libraries\GL\Win32\;$(SolutionDir)Dependencies\Libraries\SDL\x86\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IncludePath>$(SolutionDir)Dependencies\Include;$(SolutionDir)HarmonicEngine\Include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Dependencies\Libraries\SDL\x86\;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)Dependencies\Libraries\GL\Win32\;$(SolutionDir)Dependencies\Libraries\SDL\x86\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IncludePath>$(SolutionDir)Dependencies\Include;$(SolutionDir)HarmonicEngine\Include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Dependencies\Libraries\SDL\x64\;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)Dependencies\Libraries\GL\x64\;$(SolutionDir)Dependencies\Libraries\SDL\x64\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IncludePath>$(SolutionDir)Dependencies\Include;$(SolutionDir)HarmonicEngine\Include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Dependencies\Libraries\SDL\x64\;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)Dependencies\Libraries\GL\x64\;$(SolutionDir)Dependencies\Libraries\SDL\x64\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -93,7 +93,7 @@
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Lib>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;opengl32.lib;glew32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -121,7 +121,7 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <Lib>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;opengl32.lib;glew32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -143,6 +143,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Include\Engine.h" />
+    <ClInclude Include="Include\Resources\ResourceManager.h" />
+    <ClInclude Include="Include\Systems\Graphics.h" />
     <ClInclude Include="Include\Systems\Logger.h" />
     <ClInclude Include="Include\Systems\Singleton.h" />
     <ClInclude Include="Include\Systems\System.h" />
@@ -152,6 +154,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Engine.cpp" />
+    <ClCompile Include="Source\Resources\ResourceManager.cpp" />
+    <ClCompile Include="Source\Systems\Graphics.cpp" />
     <ClCompile Include="Source\Systems\Logger.cpp" />
     <ClCompile Include="Source\Systems\Singleton.cpp" />
     <ClCompile Include="Source\Systems\SystemManager.cpp" />

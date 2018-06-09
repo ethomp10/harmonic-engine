@@ -9,9 +9,6 @@ namespace engine {
 
 		int Init();
 		void Run();
-	private:
-		bool InitSDL();
-		bool CloseSDL();
 	};
 }
 

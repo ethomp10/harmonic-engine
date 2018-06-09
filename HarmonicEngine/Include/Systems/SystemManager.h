@@ -2,6 +2,7 @@
 
 #include "Singleton.h"
 #include "Window.h"
+#include "Graphics.h"
 
 #include <vector>
 #include <algorithm>
@@ -12,10 +13,10 @@ namespace engine {
 
 		std::vector<class System*> m_systems;
 	protected:
-		SystemManager() {
-			m_systems.emplace_back(new Window);
-		}
+		SystemManager();
 	public:
+		~SystemManager();
+
 		bool Init();
 		void Update();
 		void Draw() const;
