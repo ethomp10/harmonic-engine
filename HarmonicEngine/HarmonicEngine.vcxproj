@@ -104,7 +104,7 @@
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Lib>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -138,12 +138,14 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <Lib>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Include\Engine.h" />
+    <ClInclude Include="Include\Resources\Resource.h" />
     <ClInclude Include="Include\Resources\ResourceManager.h" />
+    <ClInclude Include="Include\Resources\ShaderProgram.h" />
     <ClInclude Include="Include\Systems\Graphics.h" />
     <ClInclude Include="Include\Systems\Logger.h" />
     <ClInclude Include="Include\Systems\Singleton.h" />
@@ -155,6 +157,7 @@
   <ItemGroup>
     <ClCompile Include="Source\Engine.cpp" />
     <ClCompile Include="Source\Resources\ResourceManager.cpp" />
+    <ClCompile Include="Source\Resources\ShaderProgram.cpp" />
     <ClCompile Include="Source\Systems\Graphics.cpp" />
     <ClCompile Include="Source\Systems\Logger.cpp" />
     <ClCompile Include="Source\Systems\Singleton.cpp" />
