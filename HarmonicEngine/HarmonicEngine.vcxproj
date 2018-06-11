@@ -143,10 +143,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Include\Engine.h" />
+    <ClInclude Include="Include\Resources\MeshData.h" />
     <ClInclude Include="Include\Resources\Resource.h" />
     <ClInclude Include="Include\Resources\ResourceManager.h" />
     <ClInclude Include="Include\Resources\ShaderProgram.h" />
+    <ClInclude Include="Include\Scene\Component.h" />
+    <ClInclude Include="Include\Scene\GameObject.h" />
+    <ClInclude Include="Include\Scene\MeshComponent.h" />
     <ClInclude Include="Include\Systems\Graphics.h" />
+    <ClInclude Include="Include\Systems\InputSystem.h" />
     <ClInclude Include="Include\Systems\Logger.h" />
     <ClInclude Include="Include\Systems\Singleton.h" />
     <ClInclude Include="Include\Systems\System.h" />
@@ -156,9 +161,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Engine.cpp" />
+    <ClCompile Include="Source\Resources\MeshData.cpp" />
     <ClCompile Include="Source\Resources\ResourceManager.cpp" />
     <ClCompile Include="Source\Resources\ShaderProgram.cpp" />
+    <ClCompile Include="Source\Scene\GameObject.cpp" />
+    <ClCompile Include="Source\Scene\MeshComponent.cpp" />
     <ClCompile Include="Source\Systems\Graphics.cpp" />
+    <ClCompile Include="Source\Systems\InputSystem.cpp" />
     <ClCompile Include="Source\Systems\Logger.cpp" />
     <ClCompile Include="Source\Systems\Singleton.cpp" />
     <ClCompile Include="Source\Systems\SystemManager.cpp" />

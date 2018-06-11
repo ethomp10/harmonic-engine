@@ -3,6 +3,7 @@
 #include "Singleton.h"
 #include "Window.h"
 #include "Graphics.h"
+#include "InputSystem.h"
 
 #include <vector>
 #include <algorithm>

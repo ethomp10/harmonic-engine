@@ -3,13 +3,18 @@
 #include "Systems/SystemManager.h"
 #include "Systems/Logger.h"
 #include "Systems/Window.h"
-#include "Resources/ShaderProgram.h"
 
-#include <SDL/SDL.h>
+#include "Resources/ShaderProgram.h"
+#include "Resources/MeshData.h"
+
+#include "Scene/GameObject.h"
+#include "Scene/MeshComponent.h"
+
 #include <GL/glew.h>
 #include <iostream>
 #include <chrono>
 #include <Windows.h>
+#include <vector>
 
 const char* vertexShaderSource = "#version 330 core\n"
 	"layout (location = 0) in vec3 aPos;\n"
@@ -35,14 +40,15 @@ unsigned indicies[] = {
 	1, 2, 3
 };
 
+engine::MeshData md (std::vector<float> (verticies, verticies + sizeof(verticies) / sizeof(verticies[0])),
+	std::vector<int> (indicies, indicies + sizeof(indicies) / sizeof(indicies[0])));
 engine::ShaderProgram sp(vertexShaderSource, fragmentShaderSource);
-unsigned int VAO, VBO, EBO;
+
+engine::MeshComponent mc(&md, &sp);
+
+engine::GameObject go;
 
 engine::Engine::~Engine() {
-	glDeleteVertexArrays(1, &VAO);
-	glDeleteVertexArrays(1, &VBO);
-	glDeleteVertexArrays(1, &EBO);
-
 	SystemManager::GetInstance().Shutdown();
 }
 
@@ -55,36 +61,18 @@ int engine::Engine::Init() {
 	if (!SystemManager::GetInstance().Init())
 		return 2;
 
+	md.Init();
 	sp.Init();
 
-	// Create buffers
-	glGenVertexArrays(1, &VAO);
-	glGenBuffers(1, &VBO);
-	glGenBuffers(1, &EBO);
+	mc.Init();
 
-	glBindVertexArray(VAO);
-
-	glBindBuffer(GL_ARRAY_BUFFER, VBO);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(verticies), verticies, GL_STATIC_DRAW);
-
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indicies), indicies, GL_STATIC_DRAW);
-
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-	glEnableVertexAttribArray(0);
-
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
-	glBindVertexArray(0);
+	go.AddComponent(&mc);
 
 	return 0;
 }
 
 void engine::Engine::Run() {
-	bool quit = false;
-
-	SDL_Event e;
-
-	while (!quit) {
+	while (!SystemManager::GetInstance().GetSystem<InputSystem>()->WasCloseRequested()) {
 		// Timing
 		{
 			static uint64_t frameCounter = 0;
@@ -110,32 +98,16 @@ void engine::Engine::Run() {
 			}
 		}
 
-		while (SDL_PollEvent(&e) != 0) {
-			switch (e.type) {
-			case SDL_QUIT:
-				quit = true;
-				break;
-			default:
-				break;
-			}
-		}
-
 		SystemManager::GetInstance().Update();
+		go.Update();
+
 		SystemManager::GetInstance().Draw();
+		go.Draw();
 
-		// Draw square
-		sp.Use();
-		glBindVertexArray(VAO);
-		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+		InputSystem* input = SystemManager::GetInstance().GetSystem<InputSystem>();
 
-		//glEnableClientState(GL_COLOR_ARRAY);
-
-		// Draw triangle
-		/*glBegin(GL_TRIANGLES);
-		glColor3f(0.0f, 1.0f, 0.0f);
-		glVertex2f(0, 0);
-		glVertex2f(0, 500);
-		glVertex2f(500, 500);
-		glEnd();*/
+		if (input->WasKeyPressed(SDLK_SPACE)) {
+			std::cout << "Pressing space" << std::endl;
+		}
 	}
 }
