@@ -2,8 +2,18 @@
 
 #include <vector>
 
+#include "../../glm/glm.hpp"
+#include "../../glm/gtc/matrix_transform.hpp"
+#include "../../glm/gtc/type_ptr.hpp"
+
 namespace engine {
 	class GameObject {
+		glm::vec4 m_position;
+		glm::vec4 m_scale;
+		glm::vec4 m_rotation;
+
+		glm::mat4 m_transform;
+
 		std::vector<GameObject*> m_children;
 		std::vector<class Component*> m_components;
 	public:
@@ -32,6 +42,9 @@ namespace engine {
 			return nullptr;
 		}
 
-		std::vector<class Component*> GetComponent() const { return m_components; }
+		inline std::vector<class Component*> GetComponent() const { return m_components; }
+		inline const glm::mat4& GetTransform() const { return m_transform; }
+
+		void Translate(float x, float y, float z);
 	};
 }

@@ -17,6 +17,8 @@
     <ClInclude Include="Include\Resources\MeshData.h" />
     <ClInclude Include="Include\Scene\MeshComponent.h" />
     <ClInclude Include="Include\Systems\InputSystem.h" />
+    <ClInclude Include="stbimage\stb_image.h" />
+    <ClInclude Include="Include\Resources\Texture.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Engine.cpp" />
@@ -31,5 +33,7 @@
     <ClCompile Include="Source\Resources\MeshData.cpp" />
     <ClCompile Include="Source\Scene\MeshComponent.cpp" />
     <ClCompile Include="Source\Systems\InputSystem.cpp" />
+    <ClCompile Include="stbimage\stb_image.cpp" />
+    <ClCompile Include="Source\Resources\Texture.cpp" />
   </ItemGroup>
 </Project>

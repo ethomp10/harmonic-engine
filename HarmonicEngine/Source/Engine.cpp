@@ -10,6 +10,8 @@
 #include "Scene/GameObject.h"
 #include "Scene/MeshComponent.h"
 
+#include "../stbimage/stb_image.h"
+
 #include <GL/glew.h>
 #include <iostream>
 #include <chrono>
@@ -18,26 +20,39 @@
 
 const char* vertexShaderSource = "#version 330 core\n"
 	"layout (location = 0) in vec3 aPos;\n"
+	"layout (location = 1) in vec3 aColour;\n"
+	"uniform mat4 transform;\n"
+	"out vec3 ourColour;\n"
 	"void main() {\n"
-	"	gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
+	"	gl_Position = transform * vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
+	"	ourColour = aColour;\n"
 	"}\0";
 
 const char* fragmentShaderSource = "#version 330 core\n"
-	"out vec4 FragColour;\n"
+	"in vec3 ourColour;\n"
+	"out vec4 fragColour;\n"
 	"void main() {\n"
-	"	FragColour = vec4(0.5f, 1.0f, 0.3f, 1.0f);\n"
+	"	fragColour = vec4(ourColour, 1.0f);\n"
 	"}\0";
 
 float verticies[] = {
-	0.5f, 0.5f, 0.0f,
-	0.5f, -0.5f, 0.0f,
-	-0.5f, -0.5f, 0.0f,
-	-0.5f, 0.5f, 0.0f
+	// Positions			// Colours
+	0.5f, 0.5f, 0.0f,		0.5f, 0.0f, 0.0f,
+	0.5f, -0.5f, 0.0f,		0.0f, 0.5f, 0.0f,
+	-0.5f, -0.5f, 0.0f,		0.0f, 0.0f, 0.5f,
+	-0.5f, 0.5f, 0.0f,		0.5f, 0.5f, 0.5f
 };
 
 unsigned indicies[] = {
 	0, 1, 3,
 	1, 2, 3
+};
+
+float texCoords[] = {
+	0.0f, 0.0f,
+	1.0f, 0.0f,
+	0.0f, 1.0f,
+	1.0f, 1.0f
 };
 
 engine::MeshData md (std::vector<float> (verticies, verticies + sizeof(verticies) / sizeof(verticies[0])),
@@ -47,6 +62,9 @@ engine::ShaderProgram sp(vertexShaderSource, fragmentShaderSource);
 engine::MeshComponent mc(&md, &sp);
 
 engine::GameObject go;
+
+int width, height, nrChannels;
+unsigned char *data = stbi_load("wall.jpg", &width, &height, &nrChannels, 0);
 
 engine::Engine::~Engine() {
 	SystemManager::GetInstance().Shutdown();
@@ -108,6 +126,22 @@ void engine::Engine::Run() {
 
 		if (input->WasKeyPressed(SDLK_SPACE)) {
 			std::cout << "Pressing space" << std::endl;
+		}
+
+		if (input->IsKey(SDLK_w)) {
+			go.Translate(0.0f, 0.0005f, 0.0f);
+		}
+
+		if (input->IsKey(SDLK_s)) {
+			go.Translate(0.0f, -0.0005f, 0.0f);
+		}
+
+		if (input->IsKey(SDLK_a)) {
+			go.Translate(-0.0005f, 0.0f, 0.0f);
+		}
+
+		if (input->IsKey(SDLK_d)) {
+			go.Translate(0.0005f, 0.0f, 0.0f);
 		}
 	}
 }

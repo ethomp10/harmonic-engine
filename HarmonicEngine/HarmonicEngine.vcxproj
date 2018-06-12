@@ -147,6 +147,7 @@
     <ClInclude Include="Include\Resources\Resource.h" />
     <ClInclude Include="Include\Resources\ResourceManager.h" />
     <ClInclude Include="Include\Resources\ShaderProgram.h" />
+    <ClInclude Include="Include\Resources\Texture.h" />
     <ClInclude Include="Include\Scene\Component.h" />
     <ClInclude Include="Include\Scene\GameObject.h" />
     <ClInclude Include="Include\Scene\MeshComponent.h" />
@@ -158,12 +159,14 @@
     <ClInclude Include="Include\Systems\SystemManager.h" />
     <ClInclude Include="Include\Systems\Window.h" />
     <ClInclude Include="Include\Utilities\EngineTypes.h" />
+    <ClInclude Include="stbimage\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Engine.cpp" />
     <ClCompile Include="Source\Resources\MeshData.cpp" />
     <ClCompile Include="Source\Resources\ResourceManager.cpp" />
     <ClCompile Include="Source\Resources\ShaderProgram.cpp" />
+    <ClCompile Include="Source\Resources\Texture.cpp" />
     <ClCompile Include="Source\Scene\GameObject.cpp" />
     <ClCompile Include="Source\Scene\MeshComponent.cpp" />
     <ClCompile Include="Source\Systems\Graphics.cpp" />
@@ -172,6 +175,7 @@
     <ClCompile Include="Source\Systems\Singleton.cpp" />
     <ClCompile Include="Source\Systems\SystemManager.cpp" />
     <ClCompile Include="Source\Systems\Window.cpp" />
+    <ClCompile Include="stbimage\stb_image.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

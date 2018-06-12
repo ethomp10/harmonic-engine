@@ -2,7 +2,11 @@
 #include "Scene/Component.h"
 
 namespace engine {
-	GameObject::GameObject() {
+	GameObject::GameObject() :
+		m_position(0.0f, 0.0f, 0.0f, 1.0f),
+		m_scale(1.0f, 1.0f, 1.0f, 1.0f),
+		m_rotation(0.0f, 0.0f, 0.0f, 0.0f),
+		m_transform(1.0f) {
 
 	}
 
@@ -43,6 +47,11 @@ namespace engine {
 	}
 
 	void GameObject::AddComponent(class Component* c) {
+		c->SetParent(this);
 		m_components.push_back(c);
+	}
+
+	void GameObject::Translate(float x, float y, float z) {
+		m_transform = glm::translate(m_transform, glm::vec3(x, y, z));
 	}
 }
