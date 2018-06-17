@@ -6,6 +6,7 @@
 
 #include "Resources/ShaderProgram.h"
 #include "Resources/MeshData.h"
+#include "Resources/Texture.h"
 
 #include "Scene/GameObject.h"
 #include "Scene/MeshComponent.h"
@@ -21,26 +22,31 @@
 const char* vertexShaderSource = "#version 330 core\n"
 	"layout (location = 0) in vec3 aPos;\n"
 	"layout (location = 1) in vec3 aColour;\n"
+	"layout (location = 2) in vec2 aTexCoord;\n"
 	"uniform mat4 transform;\n"
 	"out vec3 ourColour;\n"
+	"out vec2 texCoord;\n"
 	"void main() {\n"
 	"	gl_Position = transform * vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
 	"	ourColour = aColour;\n"
+	"	texCoord = aTexCoord;\n"
 	"}\0";
 
 const char* fragmentShaderSource = "#version 330 core\n"
 	"in vec3 ourColour;\n"
+	"in vec2 texCoord;\n"
 	"out vec4 fragColour;\n"
+	"uniform sampler2D texture1;\n"
 	"void main() {\n"
-	"	fragColour = vec4(ourColour, 1.0f);\n"
+	"	fragColour = texture(texture1, texCoord) * vec4(ourColour, 1.0f);\n"
 	"}\0";
 
 float verticies[] = {
-	// Positions			// Colours
-	0.5f, 0.5f, 0.0f,		0.5f, 0.0f, 0.0f,
-	0.5f, -0.5f, 0.0f,		0.0f, 0.5f, 0.0f,
-	-0.5f, -0.5f, 0.0f,		0.0f, 0.0f, 0.5f,
-	-0.5f, 0.5f, 0.0f,		0.5f, 0.5f, 0.5f
+	// Positions			// Colours			// UVs
+	0.5f, 0.5f, 0.0f,		0.5f, 0.0f, 0.0f,	1.0f, 1.0f,
+	0.5f, -0.5f, 0.0f,		0.0f, 0.5f, 0.0f,	1.0f, 0.0f,
+	-0.5f, -0.5f, 0.0f,		0.0f, 0.0f, 0.5f,	0.0f, 0.0f,
+	-0.5f, 0.5f, 0.0f,		0.5f, 0.5f, 0.5f,	0.0f, 1.0f
 };
 
 unsigned indicies[] = {
@@ -59,7 +65,8 @@ engine::MeshData md (std::vector<float> (verticies, verticies + sizeof(verticies
 	std::vector<int> (indicies, indicies + sizeof(indicies) / sizeof(indicies[0])));
 engine::ShaderProgram sp(vertexShaderSource, fragmentShaderSource);
 
-engine::MeshComponent mc(&md, &sp);
+engine::Texture tex("wall.jpg");
+engine::MeshComponent mc(&md, &sp, &tex);
 
 engine::GameObject go;
 
@@ -83,6 +90,7 @@ int engine::Engine::Init() {
 	sp.Init();
 
 	mc.Init();
+	tex.Init();
 
 	go.AddComponent(&mc);
 
